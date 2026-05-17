@@ -1,3 +1,4 @@
+import { isValidUrl } from '../../hooks/useUrlValidation';
 import { useRef } from 'react';
 import { TECHS, BADGES } from '../../utils/constants';
 import { convertStructure } from '../../utils/structureUtils';
@@ -111,8 +112,12 @@ export default function EditorPanel({
           </div>
           <div>
             <label>LIVE DEMO URL (optional)</label>
-            <input type="url" id="demoUrl" placeholder="https://yourapp.com"
-              value={formData.demoUrl} onChange={e => updateField('demoUrl', e.target.value)} />
+             <input type="url" id="demoUrl" placeholder="https://yourapp.com"
+  value={formData.demoUrl} onChange={e => updateField('demoUrl', e.target.value)}
+  className={!isValidUrl(formData.demoUrl) ? 'input-url-invalid' : ''} />
+{!isValidUrl(formData.demoUrl) && (
+  <span className="url-warning">⚠️ Please enter a valid URL starting with https://</span>
+)}
           </div>
         </EditorSection>
 
@@ -234,7 +239,11 @@ export default function EditorPanel({
           <div>
             <label>LIVE DEMO / VIDEO LINK (optional)</label>
             <input type="url" id="videoUrl" placeholder="https://youtube.com/watch?v=..."
-              value={formData.videoUrl} onChange={e => updateField('videoUrl', e.target.value)} />
+  value={formData.videoUrl} onChange={e => updateField('videoUrl', e.target.value)}
+  className={!isValidUrl(formData.videoUrl) ? 'input-url-invalid' : ''} />
+{!isValidUrl(formData.videoUrl) && (
+  <span className="url-warning">⚠️ Please enter a valid URL starting with https://</span>
+)}
           </div>
           <div>
             <label>DRAG &amp; DROP SCREENSHOTS</label>
@@ -339,12 +348,20 @@ export default function EditorPanel({
             <div>
               <label>LINKEDIN (optional)</label>
               <input type="url" id="authorLinkedin" placeholder="https://linkedin.com/in/you"
-                value={formData.authorLinkedin} onChange={e => updateField('authorLinkedin', e.target.value)} />
+  value={formData.authorLinkedin} onChange={e => updateField('authorLinkedin', e.target.value)}
+  className={!isValidUrl(formData.authorLinkedin) ? 'input-url-invalid' : ''} />
+{!isValidUrl(formData.authorLinkedin) && (
+  <span className="url-warning">⚠️ Please enter a valid URL starting with https://</span>
+)}
             </div>
             <div>
               <label>PORTFOLIO (optional)</label>
               <input type="url" id="authorWebsite" placeholder="https://yoursite.com"
-                value={formData.authorWebsite} onChange={e => updateField('authorWebsite', e.target.value)} />
+  value={formData.authorWebsite} onChange={e => updateField('authorWebsite', e.target.value)}
+  className={!isValidUrl(formData.authorWebsite) ? 'input-url-invalid' : ''} />
+{!isValidUrl(formData.authorWebsite) && (
+  <span className="url-warning">⚠️ Please enter a valid URL starting with https://</span>
+)}
             </div>
           </div>
         </EditorSection>
